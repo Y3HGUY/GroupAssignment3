@@ -18,7 +18,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		try {
-		List<MidiEventData> midiEvents = EventParser.parseCsv("mystery_song.csv");
+		List<MidiEventData> midiEvents = EventParser.parseCsv("./src/mystery_song.csv");
 		
 		Sequence sequence = new Sequence(Sequence.PPQ, 384);
 		Track track = sequence.createTrack();
@@ -28,7 +28,8 @@ public class Main {
 		
 		//instrument Strats
 		
-		PitchStrats pitchStrats = (PitchStrats) new HIgherPitch();
+		PitchStrats pitchStrats = new HigherPitch();
+		
 		
 		for (MidiEventData event : midiEvents) {
 			int modifiedNote = pitchStrats.modifyPitch(event.getNote());
