@@ -4,7 +4,6 @@ import data.MidiEventData;
 
 import java.io.*;
 import java.util.*;
-import javax.sound.midi.ShortMessage;
 
 /**
  * Parsers data from CSV seperating at the comma
