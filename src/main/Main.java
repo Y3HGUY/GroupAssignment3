@@ -12,10 +12,16 @@ import data.MidiEventData;
 import parser.EventParser;
 import pitchStrats.*;
 import factories.*;
+import instrumentsStrats.*;
 
 
 public class Main {
-
+/**
+ * Main for interacting and playing midi sound 
+ * choosing pitch 
+ * choosing instruments
+ * @param args
+ */
 	public static void main(String[] args) {
 		try {
 		List<MidiEventData> midiEvents = EventParser.parseCsv("./src/mystery_song.csv");
@@ -27,11 +33,22 @@ public class Main {
 		MidiEventFactory factory = factoryAbstract.createFactory();
 		
 		//instrument Strats
+		InstrumentStrats instrumentStrats = new TrumpetStrat();
+		instrumentStrats.applyInstrument(track, 0);
+		InstrumentStrats instrumentStrats1 = new ElectricBassGuitarStrat();
+		instrumentStrats1.applyInstrument(track,1);
 		
+		
+		//Pitch Strats
 		PitchStrats pitchStrats = new HigherPitch();
+		//PitchStrats pichStrats = new LowerPitch();
 		
+		/**
+		 * Generates events / uses pitch 
+		 */
 		
 		for (MidiEventData event : midiEvents) {
+			
 			int modifiedNote = pitchStrats.modifyPitch(event.getNote());
 			
 			if (event.getNote_on_off() == ShortMessage.NOTE_ON) {

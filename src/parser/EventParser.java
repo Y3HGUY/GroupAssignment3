@@ -16,9 +16,18 @@ public class EventParser {
 			String line;
 			
 			while ((line = br.readLine()) != null) {
+				if (line.startsWith("\uFEFF")) {
+			        line = line.replace("\uFEFF", "");
+			    }
 				if (line.trim().isEmpty()) continue;
 				
+				
+				
 				String[] tokens = line.split(",");
+				if (tokens.length != 6) {
+					System.err.println("Invalid Row" + Arrays.toString(tokens));
+					continue;
+				}
 				int startEndTick = Integer.parseInt(tokens[0].trim());
 				int note_on_off = tokens[1].contains("on") ? javax.sound.midi.ShortMessage.NOTE_ON : javax.sound.midi.ShortMessage.NOTE_OFF;
 				int channel = Integer.parseInt(tokens[2].trim());
