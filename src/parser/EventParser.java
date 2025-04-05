@@ -6,6 +6,9 @@ import java.io.*;
 import java.util.*;
 import javax.sound.midi.ShortMessage;
 
+/**
+ * Parsers data from CSV seperating at the comma
+ */
 public class EventParser {
 	public static List<MidiEventData> parseCsv(String path) throws IOException{
 		List<MidiEventData> events = new ArrayList<>();
