@@ -41,31 +41,9 @@ public class MidiEventData {
 		return note_on_off;
 	}
 
-	//setters
+
 	
-	public void setStartEndTick(int startEndTick) {
-		this.startEndTick = startEndTick;
-	}
-
-	public void setVelocity(int velocity) {
-		this.velocity = velocity;
-	}
-
-	public void setNote(int note) {
-		this.note = note;
-	}
-
-	public void setChannel(int channel) {
-		this.channel = channel;
-	}
-
-	public void setInstrument(int instrument) {
-		this.instrument = instrument;
-	}
-
-	public void setNote_on_off(int note_on_off) {
-		this.note_on_off = note_on_off;
-	}
+	
 	
 	
 	

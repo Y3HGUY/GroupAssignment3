@@ -9,7 +9,7 @@ import javax.sound.midi.*;
 
 public interface MidiEventFactory {
 	/**
-	 * Creates midi notes
+	 * Creates Midi notes on event
 	 * 
 	 * @param tick, when the note should begin
 	 * @param note, pitch of sound
