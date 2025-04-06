@@ -55,7 +55,6 @@ public class Main {
 		 */
 		
 		for (MidiEventData event : midiEvents) {
-			
 			int modifiedNote = pitchStrats.modifyPitch(event.getNote());
 	
 			if (event.getNote_on_off() == ShortMessage.NOTE_ON) {
