@@ -1,6 +1,11 @@
 package data;
 /**
- * single MIDI event parsed form CSV file
+ * single MIDI event data
+ * startEndTick - time stamp
+ * velocity - Volume
+ * Channel - where the notes are 
+ * instrument - sound that is played 
+ * note_on_off - controls on or off
  */
 public class MidiEventData {
 	private int startEndTick, velocity, note, channel, instrument, note_on_off;
