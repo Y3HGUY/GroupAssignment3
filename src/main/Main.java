@@ -20,6 +20,7 @@ public class Main {
  * Main for interacting and playing midi sound 
  * choosing pitch 
  * choosing instruments
+ * plays result in sequncer
  * @param args
  */
 	public static void main(String[] args) {
@@ -29,34 +30,43 @@ public class Main {
 		Sequence sequence = new Sequence(Sequence.PPQ, 384);
 		Track track = sequence.createTrack();
 		
+		//implements factories
 		MidiEventFactoryAbsInterface factoryAbstract = new StandardMidiEventAbstract();
 		MidiEventFactory factory = factoryAbstract.createFactory();
 		
-		//instrument Strats
+		/**
+		 * Set instrument to track zero - CSV track is zero 
+		 */
 		InstrumentStrats instrumentStrats = new TrumpetStrat();
-		instrumentStrats.applyInstrument(track, 0);
+		instrumentStrats.applyInstrument(track, 1);
 		InstrumentStrats instrumentStrats1 = new ElectricBassGuitarStrat();
-		instrumentStrats1.applyInstrument(track,1);
+		instrumentStrats1.applyInstrument(track, 0);
+		InstrumentStrats instrumentStrats2 = new AcousticGrandPianoStrat();
+		instrumentStrats.applyInstrument(track, 2);
 		
 		
 		//Pitch Strats
 		PitchStrats pitchStrats = new HigherPitch();
-		//PitchStrats pichStrats = new LowerPitch();
+		//PitchStrats pitchStrats = new LowerPitch();
 		
 		/**
 		 * Generates events / uses pitch 
+		 * 
 		 */
 		
 		for (MidiEventData event : midiEvents) {
 			
 			int modifiedNote = pitchStrats.modifyPitch(event.getNote());
-			
+	
 			if (event.getNote_on_off() == ShortMessage.NOTE_ON) {
 				track.add(factory.createNoteOn(event.getStartEndTick(), modifiedNote, event.getChannel(), event.getVelocity()));
 			} else {
 				track.add(factory.createNoteOff(event.getStartEndTick(), modifiedNote, event.getChannel()));
 			}
 		}
+		/**
+		 * Start sequencer -> used from documentation 
+		 */
 		Sequencer sequencer = MidiSystem.getSequencer();
 		sequencer.open();
 		sequencer.setSequence(sequence);
